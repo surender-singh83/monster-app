@@ -1,0 +1,12 @@
+.card-container{
+  background: #95dada;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 25px;
+  cursor: pointer;
+  transform: scale(1);
+  transition: all 500ms ease 0s;
+}
+.card-container:hover{
+  transform: scale(1.05);
+}
