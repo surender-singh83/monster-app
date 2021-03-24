@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://surender-singh83.github.io/monster-app/",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.0",
     "gh-pages": "^3.1.0",
     "node-sass": "^4.14.1",
