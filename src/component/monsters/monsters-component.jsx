@@ -5,13 +5,14 @@ import { SearchBox } from '../search-box/searchBox-component';
 import PageComponent from '../common/pageComponent';
 import {Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
+import Loader from '../loader/loader';
 
 class Monsters extends Component{
   constructor(){
     super();
     this.state = {
       monsters: [],
-      authToken: false,
+      isLoader: false,
       searchField: ''
     }
     
@@ -19,9 +20,10 @@ class Monsters extends Component{
  
   
   componentDidMount(){
+    this.setState({isLoader: true})
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
-    .then(users => this.setState({monsters: users}));
+    .then(users => this.setState({monsters: users, isLoader: false}));
 
     
 }
@@ -33,14 +35,22 @@ class Monsters extends Component{
   return (
     <PageComponent title="Mosters Page">
       {localStorage.getItem('auth-token') || this.props.user.isLogged ? (
-        <div>
-  
-        <SearchBox 
-          placeholder='Search here'
-          handleChange={e => this.setState({searchField:e.target.value})}
-          />
-        <CardList monsters={filterdMonsters} />
-        </div>
+        this.state.isLoader ? (
+          <Loader />
+          ) : (
+
+           
+            <div>
+            
+            <SearchBox 
+              placeholder='Search here'
+              handleChange={e => this.setState({searchField:e.target.value})}
+              />
+            <CardList monsters={filterdMonsters} />
+            </div>
+          )
+        
+     
       ) : (<Redirect to="/" />) }
     </PageComponent>
   );

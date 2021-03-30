@@ -47,9 +47,10 @@ const LogoutAuthAction = (history) => {
       type: AuthActiontype.LOGOUT_SUCCESS,
       payload: {},
     });
+    history.push("/");
   }
 
-  //return console.log(userState);
+  
 }
 
 export {

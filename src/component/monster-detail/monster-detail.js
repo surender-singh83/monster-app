@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PageComponent from '../common/pageComponent';
+import Loader from '../loader/loader';
 
 function MonsterDetail({ match }) {
   //console.log(match.params.id);
@@ -77,7 +78,7 @@ function MonsterDetail({ match }) {
       </div>
       </PageComponent>
   }else {
-    content = <div>No Users</div>
+    content = <div><Loader /></div>
   }
 
 

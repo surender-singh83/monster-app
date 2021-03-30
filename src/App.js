@@ -8,6 +8,8 @@ import AboutUs from './component/aboutus/about-component';
 import MonsterDetail from './component/monster-detail/monster-detail';
 import NavBar from './component/navbar/navbar-component';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
+import LoginForm from './component/login-form/login-form';
+import User from './component/users/user';
 
 
 class App extends Component{
@@ -18,17 +20,14 @@ class App extends Component{
           <NavBar />
           <div>
             <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={LoginForm} />
             <Route path="/monster" component={Monsters} />
+            <Route path="/users" component={User} />
             <Route path="/about" component={AboutUs} />
             <Route path="/monsters-detail/:id" component={MonsterDetail} />
             {/* <Route path="/contact" component={Contact} /> */} 
           </div>
         </Router>
-         {/* <SearchBox 
-          placeholder='Search here'
-          handleChange={e => this.setState({searchField:e.target.value})}
-          />
-        <CardList monsters={filterdMonsters} /> */}
     </div>
   );
   }
