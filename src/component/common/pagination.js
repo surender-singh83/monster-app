@@ -33,19 +33,19 @@ const Pagination = ({total=0, itemsperpage=10, currentpage=1, onPageChange }) =>
 
     if(totalPages === 0) return null;
 
-    const handlePrev = ()=> {
-        onPageChange(currentpage-1);
+    const handlePrev = (page) => {
+        onPageChange(currentpage-page);
 
-        if((currentpage-1)%pageNumberLimit===0) {
+        if((currentpage-page)%pageNumberLimit===0) {
             setmaxPageLimit(maxPageLimit-pageNumberLimit);
             setminPageLimit(minPageLimit-pageNumberLimit);
         }
     }
 
-    const handleNext = ()=> {
-        onPageChange(currentpage+1);
+    const handleNext = (page) => {
+        onPageChange(currentpage+page);
 
-        if(currentpage+1 > maxPageLimit) {
+        if(currentpage+page > maxPageLimit) {
             setmaxPageLimit(maxPageLimit+pageNumberLimit);
             setminPageLimit(minPageLimit+pageNumberLimit);
         }
@@ -72,13 +72,13 @@ const Pagination = ({total=0, itemsperpage=10, currentpage=1, onPageChange }) =>
     let pageIncreament = null;
 
     if(maxPageLimit > 5 && minPageLimit < 44) {
-      pageIncreament = <li><a href="#!" onClick={handleNext}> &hellip;</a> </li>
+      pageIncreament = <li><a href="#!" onClick={() => handleNext(5) }> &hellip;</a> </li>
     }
 
     let pageDecreament = null;
 
     if(minPageLimit > 4 && minPageLimit < 46) {
-      pageDecreament = <li> <a href="#!" onClick={handlePrev}> &hellip;</a> </li>
+      pageDecreament = <li> <a href="#!" onClick={() => handlePrev(5) }> &hellip;</a> </li>
     }
 
     //console.log(minPageLimit)
@@ -90,14 +90,14 @@ const Pagination = ({total=0, itemsperpage=10, currentpage=1, onPageChange }) =>
                     <a href="#!" onClick={handleFirst}>first page</a>
                 </li>
                 <li className={currentpage === 1 ? "disabled" : "waves-effect"}>
-                    <a href="#!" onClick={handlePrev}><i className="material-icons">chevron_left</i></a>
+                    <a href="#!" onClick={() => handlePrev(1) }><i className="material-icons">chevron_left</i></a>
                 </li>
                 {pageDecreament}
                 
                 {paginationItem}
                 {pageIncreament}
                 <li className={currentpage === totalPages ? "disabled" : "waves-effect"}>
-                    <a href="#!" onClick={handleNext}><i className="material-icons">chevron_right</i></a>
+                    <a href="#!" onClick={() => handleNext(1) }><i className="material-icons">chevron_right</i></a>
                 </li>
                 <li className={currentpage === totalPages ? "disabled" : "waves-effect"}>
                     <a href="#!" onClick={handleLast}>last page</a>
