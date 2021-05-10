@@ -10,7 +10,7 @@ const Pagination = ({total=0, itemsperpage=10, currentpage=1, onPageChange }) =>
     const [minPageLimit, setminPageLimit] = useState(0);
     useEffect(()=>{
         if(total > 0 && itemsperpage > 0) {
-            settotalPages(Math.ceil(total / itemsperpage));
+            settotalPages(Math.abs(total / itemsperpage));
         }
     },[total, itemsperpage]);
 
@@ -24,6 +24,7 @@ const Pagination = ({total=0, itemsperpage=10, currentpage=1, onPageChange }) =>
                         onClick={()=> onPageChange(i)}>{i}</a>
                 </li>
             )
+           // console.log(i)
             } else {
                 pages.push([]);
             }
@@ -39,7 +40,11 @@ const Pagination = ({total=0, itemsperpage=10, currentpage=1, onPageChange }) =>
         if((currentpage-page)%pageNumberLimit===0) {
             setmaxPageLimit(maxPageLimit-pageNumberLimit);
             setminPageLimit(minPageLimit-pageNumberLimit);
+
+           
         }
+
+        console.log(pageNumberLimit, currentpage, maxPageLimit, page, (currentpage-page)%pageNumberLimit)
     }
 
     const handleNext = (page) => {
@@ -72,13 +77,13 @@ const Pagination = ({total=0, itemsperpage=10, currentpage=1, onPageChange }) =>
     let pageIncreament = null;
 
     if(maxPageLimit > 5 && minPageLimit < 44) {
-      pageIncreament = <li><a href="#!" onClick={() => handleNext(5) }> &hellip;</a> </li>
+      pageIncreament = <li><a href="#!" onClick={() => handleNext(1) }> &hellip;</a> </li>
     }
 
     let pageDecreament = null;
 
     if(minPageLimit > 4 && minPageLimit < 46) {
-      pageDecreament = <li> <a href="#!" onClick={() => handlePrev(5) }> &hellip;</a> </li>
+      pageDecreament = <li> <a href="#!" onClick={() => handlePrev(1) }> &hellip;</a> </li>
     }
 
     //console.log(minPageLimit)

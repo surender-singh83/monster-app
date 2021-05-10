@@ -24,12 +24,12 @@ const LoginAuthAction = (userState, history) => {
         type: AuthActiontype.LOGIN_SUCCESS,
         payload: data,
       });
-
+      console.log("data", response);
     } catch (err) {
       console.log(err.message);
       dispatch({
         type: AuthActiontype.LOGIN_FAILED,
-        payload: {}
+        payload: err.message,
       });
     }
 

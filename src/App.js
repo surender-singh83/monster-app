@@ -9,6 +9,7 @@ import MonsterDetail from './component/monster-detail/monster-detail';
 import NavBar from './component/navbar/navbar-component';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import LoginForm from './component/login-form/login-form';
+import { Signupform } from './component/Signupform/Signupform';
 import User from './component/users/user';
 
 
@@ -21,6 +22,7 @@ class App extends Component{
           <div>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={LoginForm} />
+            <Route exact path="/signup" component={Signupform} />
             <Route path="/monster" component={Monsters} />
             <Route path="/users" component={User} />
             <Route path="/about" component={AboutUs} />

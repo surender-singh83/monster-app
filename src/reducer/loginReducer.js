@@ -8,6 +8,7 @@ const AuthActiontype = {
 
 let userContents = {
   isLogged: false,
+  error: "",
   user: {
     email: '',
     password: ''
@@ -52,7 +53,8 @@ const loginReducer = (state = newAuth, action) => {
     case AuthActiontype.LOGIN_FAILED:
       return {
         isLogged: false,
-          user: state.user,
+        user: state.user,
+        error: action.payload,
       };
     case AuthActiontype.LOGOUT_SUCCESS:
       localStorage.removeItem("auth");
